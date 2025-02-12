@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Royal PassForm - Exclusive Membership</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --royal-gold: #D4AF37;
+            --emerald: #50C878;
+            --desert-sand: #F4E4BC;
+            --deep-brown: #4A3C32;
+            --cream: #FFFDD0;
+            --white: #FFFFFF;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--desert-sand), var(--cream));
+            min-height: 100vh;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            color: var(--royal-gold);
+        }
+
+        .geometric-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%, var(--royal-gold)),
+                linear-gradient(150deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%, var(--royal-gold)),
+                linear-gradient(30deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%, var(--royal-gold)),
+                linear-gradient(150deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%, var(--royal-gold)),
+                linear-gradient(60deg, var(--royal-gold) 25%, transparent 25.5%, transparent 75%, var(--royal-gold) 75%, var(--royal-gold)),
+                linear-gradient(60deg, var(--royal-gold) 25%, transparent 25.5%, transparent 75%, var(--royal-gold) 75%, var(--royal-gold));
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--royal-gold), var(--emerald));
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-container:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .material-icons {
+            font-size: 36px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .icon-text {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-heading {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 3.5rem;
+            color: var(--deep-brown);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: royalFloat 3s infinite ease-in-out;
+            position: relative;
+        }
+
+        .main-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--royal-gold), transparent);
+        }
+
+        @keyframes royalFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--royal-gold);
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 48%, 
+                var(--royal-gold) 49%,
+                var(--royal-gold) 51%, 
+                transparent 52%);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--deep-brown);
+        }
+
+        .form-group input:focus {
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--royal-gold), var(--emerald));
+            border: none;
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover::after {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--white), var(--cream));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            border: 3px solid var(--royal-gold);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--royal-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px var(--royal-gold); }
+            50% { box-shadow: 0 0 40px var(--royal-gold); }
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--royal-gold), var(--emerald));
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .footer-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .header-icons {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .icon-container {
+                padding: 10px;
+            }
+        }
+
+        /* Desert Dunes Animation */
+        .dunes {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--desert-sand) 0%,
+                var(--desert-sand) 10%,
+                transparent 10%,
+                transparent 50%
+            );
+            background-size: 20px 20px;
+            opacity: 0.1;
+            animation: duneMove 30s linear infinite;
+        }
+
+        @keyframes duneMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="geometric-pattern"></div>
+    <div class="dunes"></div>
+
+    <header>
+        <div class="header-pattern"></div>
+        <div class="header-icons">
+            <div class="icon-container">
+                <span class="material-icons">stars</span>
+                <span class="icon-text">Royal Membership</span>
+            </div>
+            <div class="icon-container">
+                <a href="support.html" style="text-decoration: none; color: inherit;">
+                    <span class="material-icons">diamond</span>
+                    <span class="icon-text">VIP Support</span>
+                </a>
+            </div>
+            <div class="icon-container">
+                <span class="material-icons">workspace_premium</span>
+                <span class="icon-text">Premium Info</span>
+            </div>
+        </div>
+    </header>
+
+    <h1 class="main-heading">
+        UAE ROYAL PASSFORM
+        <div class="arabic-text" style="font-size: 0.6em; margin-top: 10px;">النخبة الملكية</div>
+    </h1>
+
+    <div class="form-container">
+        <form id="membershipForm">
+            <div class="form-group">
+                <input type="text" placeholder="Enter Your Full Name | أدخل اسمك الكامل" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Country Name | اسم الدولة" required>
+            </div>
+            <div class="form-group">
+                <label for="date" style="display: block; margin-bottom: 5px; color: var(--deep-brown);">Choose Date | اختر التاريخ</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email Address | البريد الإلكتروني" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" placeholder="Phone Number | رقم الهاتف" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Address | العنوان" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Zip Code | الرمز البريدي" required>
+            </div>
+            <button type="submit" class="submit-btn">
+                Register for Royal Membership
+                <div class="arabic-text" style="font-size: 0.8em;">التسجيل للعضوية الملكية</div>
+            </button>
+        </form>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h2 style="color: var(--royal-gold); font-size: 2em;">Welcome to Royalty!</h2>
+            <p style="color: var(--deep-brown); margin: 20px 0;">Your royal membership application has been received.</p>
+            <div class="loader"></div>
+            <div class="arabic-text" style="margin-top: 20px;">مرحباً بكم في النخبة الملكية</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-pattern"></div>
+        <div class="footer-content">
+            <p>&copy; 2024 UAE Royal PassForm - Exclusive Membership</p>
+            <div class="arabic-text" style="margin-top: 10px;">النخبة الملكية - جميع الحقوق محفوظة</div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('membershipForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show success modal with enhanced animations
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'flex';
+            modal.style.animation = 'fadeIn 0.5s ease-out';
+
+            // Simulate processing with royal animation
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Redirect to success page
+            setTimeout(() => {
+                window.location.href = 'success.html';
+            }, 3000);
+        });
+
+        // Add subtle floating animation to form container
+        const formContainer = document.querySelector('.form-container');
+        let float = 0;
+        setInterval(() => {
+            float += 0.02;
+            formContainer.style.transform = `translateY(${Math.sin(float) * 5}px)`;
+        }, 50);
+
+        // Add dynamic background pattern movement
+        document.addEventListener('mousemove', (e) => {
+            const pattern = document.querySelector('.geometric-pattern');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            pattern.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+        });
+    </script>
+</body>
+</html>
