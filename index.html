@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal UAE Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --royal-gold: #D4AF37;
+            --emerald: #50C878;
+            --desert-sand: #F4E4BC;
+            --deep-brown: #4A3C32;
+            --cream: #FFFDD0;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --neon-red: #FF3131;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--desert-sand), var(--cream));
+            min-height: 100vh;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            overflow-x: hidden;
+            color: var(--deep-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .geometric-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(30deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%),
+                linear-gradient(150deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%),
+                linear-gradient(30deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%),
+                linear-gradient(150deg, var(--royal-gold) 12%, transparent 12.5%, transparent 87%, var(--royal-gold) 87.5%),
+                linear-gradient(60deg, var(--royal-gold) 25%, transparent 25.5%, transparent 75%, var(--royal-gold) 75%),
+                linear-gradient(60deg, var(--royal-gold) 25%, transparent 25.5%, transparent 75%, var(--royal-gold) 75%);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--royal-gold);
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--deep-brown);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--deep-brown);
+            text-align: center;
+        }
+
+        .form-group input:focus {
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--royal-gold), var(--emerald));
+            border: none;
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(45deg, var(--emerald), var(--royal-gold));
+        }
+
+        /* Modal for Incorrect Login */
+        .modal {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--neon-red);
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--neon-red);
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .modal.show {
+            top: 20px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="geometric-pattern"></div>
+
+<div class="login-container">
+    <h1>Royal UAE Login</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+</div>
+
+<div class="modal" id="errorModal">Incorrect Username or Password</div>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let modal = document.getElementById("errorModal");
+
+        if (username === "obey" && password === "30301") {
+            window.location.href = "main.html"; // Redirect to main page
+        } else {
+            modal.classList.add("show");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+            }, 2000);
+        }
+    });
+</script>
+
+</body>
+</html>
